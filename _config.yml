@@ -1,0 +1,7 @@
+title: Shannon Spence
+description: Comics and art by Shannon Spence
+
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
