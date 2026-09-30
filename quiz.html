@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Which Character Are You? – Shannon Spence</title>
+  <meta name="description" content="Take the quiz to find out which Punk Lab Girl character you are!" />
+
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="stylesheet" href="style2.css?v=3" />
+
+  <style>
+    /* ===== QUIZ PAGE STYLES ===== */
+
+    .quiz-intro {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .quiz-intro p {
+      font-size: 1rem;
+      color: #3959ac;
+      margin-top: 8px;
+    }
+
+    /* Progress bar */
+    .quiz-progress {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .quiz-progress-bar {
+      flex: 1;
+      height: 12px;
+      background: rgba(255,255,255,0.6);
+      border-radius: 999px;
+      border: 2px solid #f83288;
+      overflow: hidden;
+    }
+
+    .quiz-progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #ffb3dd, #f83288);
+      border-radius: 999px;
+      transition: width 0.4s ease;
+      width: 0%;
+    }
+
+    .quiz-progress-label {
+      font-size: 0.85rem;
+      color: #3959ac;
+      white-space: nowrap;
+      font-weight: bold;
+    }
+
+    /* Question card */
+    .quiz-question-card {
+      background: rgba(255,255,255,0.82);
+      border-radius: 18px;
+      padding: 20px;
+      box-shadow: 0 4px 10px rgba(57, 89, 172, 0.2);
+      margin-bottom: 20px;
+      animation: fadeSlideIn 0.35s ease;
+    }
+
+    @keyframes fadeSlideIn {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .quiz-question-text {
+      font-family: '', cursive;
+      font-size: 1.4rem;
+      color: #f83288;
+      margin-bottom: 16px;
+      text-align: center;
+    }
+
+    /* Answer options */
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .quiz-option {
+      background: #fffbfe;
+      border: 2px dashed #f83288;
+      border-radius: 14px;
+      padding: 12px 16px;
+      cursor: pointer;
+      font-family: 'Shannon', Arial, sans-serif;
+      font-size: 0.95rem;
+      color: #2b2140;
+      text-align: left;
+      transition: background 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+      box-shadow: 0 3px 0 rgba(57, 89, 172, 0.3);
+    }
+
+    .quiz-option:hover {
+      background: linear-gradient(145deg, #ffe3f4, #ffb3dd);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 0 rgba(57, 89, 172, 0.4);
+    }
+
+    .quiz-option.selected {
+      background: linear-gradient(145deg, #ffb3dd, #f83288);
+      color: #fff;
+      border-style: solid;
+      transform: translateY(2px);
+      box-shadow: 0 1px 0 rgba(57, 89, 172, 0.4);
+    }
+
+    /* Nav buttons */
+    .quiz-nav {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .quiz-nav-btn {
+      padding: 10px 22px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      font-family: 'Shannon', Arial, sans-serif;
+      font-weight: bold;
+      font-size: 0.95rem;
+      background: linear-gradient(145deg, #f83288, #3959ac);
+      color: white;
+      box-shadow: 0 4px 0 rgba(57, 89, 172, 0.9);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .quiz-nav-btn:hover {
+      transform: translateY(2px);
+      box-shadow: 0 2px 0 rgba(57, 89, 172, 0.9);
+    }
+
+    .quiz-nav-btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .quiz-nav-btn.secondary {
+      background: linear-gradient(145deg, #ffb3dd, #f83288);
+    }
+
+    /* ===== RESULT MODAL ===== */
+    #result-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(43, 33, 64, 0.85);
+      z-index: 9000;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    #result-modal.open {
+      display: flex;
+    }
+
+    .result-card {
+      background: rgba(255, 243, 252, 0.97);
+      border-radius: 24px;
+      padding: 32px 28px 28px;
+      max-width: 420px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 12px 40px rgba(57, 89, 172, 0.45);
+      animation: popIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      position: relative;
+    }
+
+    @keyframes popIn {
+      from { opacity: 0; transform: scale(0.7); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+
+    .result-card img {
+      width: 160px;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 4px solid #f83288;
+      box-shadow: 0 6px 16px rgba(57, 89, 172, 0.3);
+      margin-bottom: 16px;
+    }
+
+    .result-card h2 {
+      font-family: 'SongSquiggle', cursive;
+      font-size: 2rem;
+      color: #f83288;
+      margin-bottom: 6px;
+    }
+
+    .result-card .result-name {
+      font-family: 'SongSquiggle', cursive;
+      font-size: 1.5rem;
+      color: #3959ac;
+      margin-bottom: 12px;
+    }
+
+    .result-card .result-desc {
+      border: 2px dashed #f83288;
+      border-radius: 14px;
+      padding: 12px;
+      background: #fffbfe;
+      font-size: 0.9rem;
+      color: #2b2140;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .result-close-btn {
+      padding: 10px 24px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      font-family: 'Shannon', Arial, sans-serif;
+      font-weight: bold;
+      font-size: 0.95rem;
+      background: linear-gradient(145deg, #f83288, #3959ac);
+      color: white;
+      box-shadow: 0 4px 0 rgba(57, 89, 172, 0.9);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .result-close-btn:hover {
+      transform: translateY(2px);
+      box-shadow: 0 2px 0 rgba(57, 89, 172, 0.9);
+    }
+
+    /* Restart button inside result */
+    .result-restart-btn {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 8px 18px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      font-family: 'Shannon', Arial, sans-serif;
+      font-weight: bold;
+      font-size: 0.9rem;
+      background: linear-gradient(145deg, #ffb3dd, #f83288);
+      color: white;
+      box-shadow: 0 3px 0 rgba(57, 89, 172, 0.7);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .result-restart-btn:hover {
+      transform: translateY(2px);
+      box-shadow: 0 1px 0 rgba(57, 89, 172, 0.7);
+    }
+
+    /* EDITOR NOTES (visible in source, helpful for Shannon to fill in) */
+    /* All placeholder spots marked with 🔧 in comments */
+
+    @media (max-width: 700px) {
+      .quiz-question-text { font-size: 1.15rem; }
+      .result-card { padding: 24px 18px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- SPARKLE LAYER -->
+  <div id="sparkle-layer"></div>
+
+  <!-- HEADER -->
+  <header class="site-header" id="top">
+    <a href="/"><img src="images2/name.png" alt="Header image" class="header-img"></a>
+  </header>
+
+  <!-- MAIN NAV -->
+  <nav class="main-nav">
+    <a href="/comics">
+      <img src="images2/comics.png" class="nav-icon-img" alt="Comics icon">
+      <span>Comics</span>
+    </a>
+    <a href="/otherart">
+      <img src="images2/otherart.png" class="nav-icon-img" alt="Other art icon">
+      <span>Art</span>
+    </a>
+    <a href="/shop">
+      <img src="images2/bug.png" class="nav-icon-img" alt="Shop icon">
+      <span>Shop</span>
+    </a>
+    <a href="/about">
+      <img src="images2/about.png" class="nav-icon-img" alt="About icon">
+      <span>About</span>
+    </a>
+  </nav>
+
+  <!-- QUIZ SECTION -->
+  <section class="section reveal-section hidden-section">
+
+    <div class="quiz-intro">
+      <h2>Which Punk Lab Girl Character Are You?</h2>
+      <!-- 🔧 Change this subtitle to whatever fits your comic! -->
+      <p>Answer 8 questions to find out which character from Punk Lab Girl you are!</p>
+    </div>
+
+    <!-- Progress bar -->
+    <div class="quiz-progress">
+      <div class="quiz-progress-bar">
+        <div class="quiz-progress-fill" id="progress-fill"></div>
+      </div>
+      <span class="quiz-progress-label" id="progress-label">1 / 8</span>
+    </div>
+
+    <!-- Question card (filled dynamically) -->
+    <div class="quiz-question-card" id="question-card">
+      <div class="quiz-question-text" id="question-text"></div>
+      <div class="quiz-options" id="options-container"></div>
+    </div>
+
+    <!-- Nav buttons -->
+    <div class="quiz-nav">
+      <button class="quiz-nav-btn secondary" id="prev-btn" onclick="prevQuestion()">← Back</button>
+      <button class="quiz-nav-btn" id="next-btn" onclick="nextQuestion()">Next →</button>
+    </div>
+
+  </section>
+
+  <!-- RESULT MODAL -->
+  <div id="result-modal">
+    <div class="result-card">
+      <!-- 🔧 Character image swapped in by JS -->
+      <img id="result-img" src="" alt="Your character">
+      <h2>You are…</h2>
+      <div class="result-name" id="result-name"></div>
+      <div class="result-desc" id="result-desc"></div>
+      <button class="result-close-btn" onclick="closeResult()">Close ✨</button><br>
+      <button class="result-restart-btn" onclick="restartQuiz()">Retake quiz ↺</button>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-links">
+      <a href="https://instagram.com/shan.zine" target="_blank">
+        <img src="images2/ig2.png" alt="Instagram">
+      </a>
+      <a href="https://patreon.com/shannonspence">
+        <img src="images2/patreon.png" alt="Patreon">
+      </a>
+      <a href="https://bsky.app/profile/shanzine.bsky.social" target="_blank">
+        <img src="images2/blusky.png" alt="Bluesky">
+      </a>
+      <a href="mailto:me@shannon-spence.com">
+        <img src="images2/mail.png" alt="Email">
+      </a>
+      <a href="https://comixaccountability.club">
+        <img src="images2/cac2.png" alt="Comix Accountability Club">
+      </a>
+    </div>
+    <button id="back-to-top" type="button">Back to top ↑</button>
+    <div class="visitor-counter">
+      <span>All images © Shannon Spence 2026</span>
+    </div>
+  </footer>
+
+  <script>
+  // ============================================================
+  // 🔧 CHARACTERS 
+  // ============================================================
+  const characters = [
+    {
+      id: 1,
+      name: "Shelly",        
+      image: "images2/char1.webp",     
+      description: "HELL YEAH! Of course you are dude, you're so cool. " +
+                   "You're about making shit happen and having a good time while you do." +
+                   "You might rub people the wrong way sometimes, but those aren't your people. Rock on!!"
+    },
+    {
+      id: 2,
+      name: "Rufio", 
+      image: "images2/char2.webp",    
+      description: "Aw shucks, no wonder! You're a real bright light to everyone around you." +
+                   "Your friends call on you because you are there for them. Be proud of that." +
+                   "Maybe you struggle to prioritize yourself sometimes, but that's okay. You're used to going with the flow."
+             
+    },
+    {
+      id: 3,
+      name: "Zeke Jr.",       
+      image: "images2/char3.webp",    
+      description: "No way, you think you've earned the honor of this title?" +
+                   "Well, you certainly carry yourself with confidence. Go get 'em, tiger." +
+                   "Don't forget to talk yourself a little less seriously once in a while and let your goofy side take over."
+                  
+    }
+  ];
+
+  // ============================================================
+  // 🔧 QUESTIONS & ANSWERS
+  // Each answer has a `char` value: 1, 2, or 3
+  // The character with the most picked answers wins.
+  // Answers are automatically shuffled each time the quiz loads.
+  // ===========================================================
+  const questions = [
+    {
+      question: "It's a free Saturday morning. What are you doing?",
+      
+      answers: [
+        { text: "Sleeping in as long as humanly possible",           char: 1 }, 
+        { text: "Walking to my favorite coffee shop with a book in hand",                char: 2 }, 
+        { text: "Looking up a restaurant for brunch",      char: 3 }, 
+      ]
+    },
+    {
+      question: "Time for a workout! You:",
+      
+      answers: [
+        { text: "Lace up some skates and grab headphones to jam out",                       char: 1 }, 
+        { text: "Hit the gym",                      char: 3 }, 
+        { text: "Cue up some yoga on my laptop",             char: 2 }, 
+      ]
+    },
+    {
+      question: "What's in your earbuds on the subway?",
+      
+      answers: [
+        { text: "Soundtrack to a movie or video game",                     char: 2 }, 
+        { text: "A podcast on an interesting topic",                  char: 3 }, 
+        { text: "Something fast-paced to pump me up",             char: 1 }, 
+      ]
+    },
+    {
+      question: "The barista messed up your coffee order. You say:",
+      
+      answers: [
+        { text: "I drink energy drinks, not coffee",              char: 3 },
+        { text: "I'm so sorry, would you mind remaking this?",       char: 2 }, 
+        { text: "Nothing. I just take it.",                   char: 1 }, 
+      ]
+    },
+    {
+      question: "What's your relationship with rules?",
+      
+      answers: [
+        { text: "Rules are guidelines, not gospel",                  char: 3 }, 
+        { text: "I follow them unless they're clearly wrong",        char: 2 }, 
+        { text: "Rules are meant to be broken",      char: 1 }, 
+      ]
+    },
+    {
+      question: "You're heading to a concert. The band is:",
+      
+      answers: [
+        { text: "Loud, confident, and cool",                                 char: 1 }, 
+        { text: "Known for wearing quirky costumes",                              char: 2 }, 
+        { text: "Nowhere - there's a DJ",                             char: 3 }, 
+      ]
+    },
+    {
+      question: "It's your birthday and time for desert. What're you having?",
+      
+      answers: [
+        { text: "Strawberry shortcake",                 char: 2 }, 
+        { text: "I don't really eat sweets",                char: 3 }, 
+        { text: "The most chocolatey thing on the menu",         char: 1 }, 
+      ]
+    },
+    {
+      question: "Finally — pick a color:",
+      
+      answers: [
+        { text: "Inky black",                                char: 1 }, 
+        { text: "Sapphire blue",                         char: 3 }, 
+        { text: "A soft green",                            char: 2 }, 
+      ]
+    }
+  ];
+
+  // ============================================================
+  // QUIZ ENGINE 
+  // ============================================================
+  let currentQuestion = 0;
+  let answers = new Array(questions.length).fill(null);
+  // Shuffle answers once per load
+  const shuffledQuestions = questions.map(q => ({
+    ...q,
+    answers: [...q.answers].sort(() => Math.random() - 0.5)
+  }));
+
+  function renderQuestion() {
+    const q = shuffledQuestions[currentQuestion];
+    document.getElementById('question-text').textContent = q.question;
+
+    const container = document.getElementById('options-container');
+    container.innerHTML = '';
+
+    q.answers.forEach((ans, i) => {
+      const btn = document.createElement('button');
+      btn.className = 'quiz-option' + (answers[currentQuestion] === ans.char ? ' selected' : '');
+      btn.textContent = ans.text;
+      btn.onclick = () => selectAnswer(ans.char, btn);
+      container.appendChild(btn);
+    });
+
+    // Progress
+    const pct = (currentQuestion / questions.length) * 100;
+    document.getElementById('progress-fill').style.width = pct + '%';
+    document.getElementById('progress-label').textContent = (currentQuestion + 1) + ' / ' + questions.length;
+
+    // Prev button
+    document.getElementById('prev-btn').disabled = currentQuestion === 0;
+
+    // Next/Submit button
+    const nextBtn = document.getElementById('next-btn');
+    if (currentQuestion === questions.length - 1) {
+      nextBtn.textContent = 'See my result! ✨';
+    } else {
+      nextBtn.textContent = 'Next →';
+    }
+  }
+
+  function selectAnswer(charId, btnEl) {
+    answers[currentQuestion] = charId;
+    // Visually mark selected
+    document.querySelectorAll('.quiz-option').forEach(b => b.classList.remove('selected'));
+    btnEl.classList.add('selected');
+  }
+
+  function nextQuestion() {
+    if (answers[currentQuestion] === null) {
+      // gentle wiggle on the card to prompt selection
+      const card = document.getElementById('question-card');
+      card.style.animation = 'none';
+      card.offsetHeight; // reflow
+      card.style.animation = 'nudge 0.3s ease';
+      return;
+    }
+    if (currentQuestion < questions.length - 1) {
+      currentQuestion++;
+      renderQuestion();
+    } else {
+      showResult();
+    }
+  }
+
+  function prevQuestion() {
+    if (currentQuestion > 0) {
+      currentQuestion--;
+      renderQuestion();
+    }
+  }
+
+  function showResult() {
+    // Tally votes
+    const tally = { 1: 0, 2: 0, 3: 0 };
+    answers.forEach(a => { if (a) tally[a]++; });
+
+    // Find winner (ties go to lowest id)
+    let winnerId = 1;
+    if (tally[2] > tally[winnerId]) winnerId = 2;
+    if (tally[3] > tally[winnerId]) winnerId = 3;
+
+    const winner = characters.find(c => c.id === winnerId);
+
+    document.getElementById('result-img').src = winner.image;
+    document.getElementById('result-img').alt = winner.name;
+    document.getElementById('result-name').textContent = winner.name;
+    document.getElementById('result-desc').textContent = winner.description;
+
+    document.getElementById('result-modal').classList.add('open');
+
+    // 🎉 SPARKLES!
+    spawnSparkles();
+    setTimeout(spawnSparkles, 300);
+    setTimeout(spawnSparkles, 600);
+  }
+
+  function closeResult() {
+    document.getElementById('result-modal').classList.remove('open');
+  }
+
+  function restartQuiz() {
+    currentQuestion = 0;
+    answers = new Array(questions.length).fill(null);
+    closeResult();
+    renderQuestion();
+  }
+
+  // Nudge animation for unanswered prompt
+  const style = document.createElement('style');
+  style.textContent = `
+    @keyframes nudge {
+      0%   { transform: translateX(0); }
+      25%  { transform: translateX(-6px); }
+      50%  { transform: translateX(6px); }
+      75%  { transform: translateX(-4px); }
+      100% { transform: translateX(0); }
+    }
+  `;
+  document.head.appendChild(style);
+
+  // ============================================================
+  // SPARKLES 
+  // ============================================================
+  function spawnSparkles() {
+    const layer = document.getElementById('sparkle-layer');
+    if (!layer) return;
+    const maxSparkles = 120;
+    for (let i = 0; i < 25; i++) {
+      const s = document.createElement('span');
+      s.className = 'sparkle';
+      s.textContent = '✨';
+      s.style.left = Math.random() * window.innerWidth + 'px';
+      s.style.top  = Math.random() * window.innerHeight + 'px';
+      layer.appendChild(s);
+      setTimeout(() => s.remove(), 2000);
+    }
+    const existing = layer.querySelectorAll('.sparkle');
+    if (existing.length > maxSparkles) {
+      const excess = existing.length - maxSparkles;
+      for (let i = 0; i < excess; i++) {
+        if (existing[i]) existing[i].remove();
+      }
+    }
+  }
+
+  // Sparkles on nav clicks
+  document.querySelectorAll('.main-nav a').forEach(link => {
+    link.addEventListener('click', function (e) {
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button === 1) return;
+      const href = this.getAttribute('href');
+      if (!href || href.startsWith('#')) return;
+      e.preventDefault();
+      spawnSparkles();
+      setTimeout(() => { window.location.href = href; }, 150);
+    });
+  });
+
+  // Back to top
+  const backBtn = document.getElementById('back-to-top');
+  if (backBtn) {
+    backBtn.addEventListener('click', function () {
+      spawnSparkles();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  // Reveal sections on scroll
+  (function () {
+    const revealSections = document.querySelectorAll('.reveal-section');
+    if (!('IntersectionObserver' in window)) {
+      revealSections.forEach(s => s.classList.remove('hidden-section'));
+      return;
+    }
+    try {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.remove('hidden-section');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      revealSections.forEach(s => observer.observe(s));
+    } catch (e) {
+      revealSections.forEach(s => s.classList.remove('hidden-section'));
+    }
+  })();
+
+  // Init
+  renderQuestion();
+  </script>
+
+</body>
+</html>

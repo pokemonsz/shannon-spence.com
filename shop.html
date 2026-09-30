@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shannon Spence – Cartoonist</title>
+  <meta name="description" content="Shannon Spence is a cartoonist making comics, zines, and handmade publications based in Brooklyn, NY." />
+
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="stylesheet" href="style2.css?v=3" />
+</head>
+<body>
+<h1 class="seo-only">Shannon Spence – Cartoonist</h1>
+
+  <!-- SPARKLE LAYER (behind cards, above background) -->
+  <div id="sparkle-layer"></div>
+
+  <!-- HEADER AREA -->
+  <header class="site-header" id="top">
+    <a href="/"><img src="images2/name.png" alt="Header image" class="header-img"></a>
+  </header>
+
+  <!-- MAIN MENU (CIRCLES: ICON ABOVE TEXT) -->
+  <nav class="main-nav">
+    <a href="/comics">
+      <img src="images2/comics.png" class="nav-icon-img" alt="Comics icon">
+      <span>Comics</span>
+    </a>
+    <a href="/otherart">
+      <img src="images2/otherart.png" class="nav-icon-img" alt="Other art icon">
+      <span>Art</span>
+    </a>
+    <a href="https://shanzine.bigcartel.com/">
+      <img src="images2/bug.png" class="nav-icon-img" alt="Shop icon">
+      <span>Shop</span>
+    </a>
+    <a href="/about">
+      <img src="images2/about.png" class="nav-icon-img" alt="About icon">
+      <span>About</span>
+    </a>
+  </nav>
+
+  <!-- WELCOME SECTION -->
+  <!--<section id="welcome" class="welcome-section">
+    <div class="welcome-overlay">
+      <h1>Welcome</h1>
+      <p>
+        Cartoonist, printer, zinester.<br>
+        Scroll or nav to explore. (✿◡‿◡)
+      </p>
+    </div>
+  </section> -->
+
+
+  <!-- PRINTING SECTION -->
+  <section id="shop" class="section reveal-section hidden-section">
+    <h2>Shop</h2>
+	<div class="under-construction">
+      <img src="images2/piglet-back.gif" alt="Under construction">
+      <p>This section is currently under construction.<br>Come back soon for more!</p>
+    </div>
+  </section>
+
+
+  <!-- LIGHTBOX FOR COMICS / OTHER ART -->
+  <div id="lightbox" onclick="closeLightbox()">
+    <img id="lightbox-img" src="" alt="">
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-links">
+      <a href="https://instagram.com/shan.zine" target="_blank">
+        <img src="images2/ig2.png" alt="Instagram">
+      </a>
+	  <a href="https://patreon.com/shannonspence">
+        <img src="images2/patreon.png" alt="Patreon">
+      </a>
+      <a href="https://bsky.app/profile/shanzine.bsky.social" target="_blank">
+        <img src="images2/blusky.png" alt="Bluesky">
+      </a>
+      <a href="mailto:me@shannon-spence.com">
+        <img src="images2/mail.png" alt="Email">
+      </a>
+      <a href="https://comixaccountability.club">
+        <img src="images2/cac2.png" alt="Comix Accountability Club">
+      </a>
+    </div>
+
+    <button id="back-to-top" type="button">Back to top ↑</button>
+
+    <div class="visitor-counter">
+      <span>All images © Shannon Spence 2026</span>
+    </div>
+  </footer>
+
+ <script>
+  // Lightbox
+  function openLightbox(img) {
+    document.getElementById("lightbox-img").src = img.src;
+    document.getElementById("lightbox").style.display = "flex";
+  }
+
+  function closeLightbox() {
+    document.getElementById("lightbox").style.display = "none";
+  }
+
+  // Expand/retract comic extras
+  document.querySelectorAll('.comic-main').forEach(function (img) {
+    img.addEventListener('click', function () {
+      const parent = img.closest('.comic-item');
+      parent.classList.toggle('expanded');
+    });
+  });
+
+  // Reveal sections on scroll (with mobile-safe fallback)
+  (function () {
+    const revealSections = document.querySelectorAll('.reveal-section');
+
+    // If IntersectionObserver isn't supported (common mobile/Safari issue), just show everything.
+    if (!('IntersectionObserver' in window)) {
+      revealSections.forEach(section => section.classList.remove('hidden-section'));
+      return;
+    }
+
+    try {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.remove('hidden-section');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 }); // slightly lower helps on mobile
+
+      revealSections.forEach(section => observer.observe(section));
+    } catch (e) {
+      // If anything goes sideways, show everything rather than hiding content
+      revealSections.forEach(section => section.classList.remove('hidden-section'));
+    }
+  })();
+
+  // ✨ sparkle layer with cap, behind cards / above background
+  function spawnSparkles() {
+    const layer = document.getElementById('sparkle-layer');
+    if (!layer) return;
+
+    const maxSparkles = 120;
+
+    for (let i = 0; i < 25; i++) {
+      const s = document.createElement('span');
+      s.className = 'sparkle';
+      s.textContent = '✨';
+
+      const x = Math.random() * window.innerWidth;
+      const y = Math.random() * window.innerHeight;
+
+      s.style.left = x + 'px';
+      s.style.top = y + 'px';
+
+      layer.appendChild(s);
+
+      setTimeout(() => s.remove(), 2000);
+    }
+
+    const existing = layer.querySelectorAll('.sparkle');
+    if (existing.length > maxSparkles) {
+      const excess = existing.length - maxSparkles;
+      for (let i = 0; i < excess; i++) {
+        if (existing[i]) existing[i].remove();
+      }
+    }
+  }
+
+  // Smooth scroll for in-page anchors + global sparkles
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      const targetId = this.getAttribute('href').substring(1);
+      const target = document.getElementById(targetId);
+      if (target) {
+        e.preventDefault();
+        spawnSparkles();
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
+  
+  // ✨ Sparkles on MAIN NAV clicks (then navigate)
+  document.querySelectorAll('.main-nav a').forEach(link => {
+    link.addEventListener('click', function (e) {
+      // allow cmd/ctrl-click, middle click, new tab, etc.
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button === 1) return;
+
+      const href = this.getAttribute('href');
+      if (!href) return;
+
+      // If it's an in-page anchor, let your existing anchor handler handle it
+      if (href.startsWith('#')) return;
+
+      // Otherwise, sparkle then navigate
+      e.preventDefault();
+      spawnSparkles();
+
+      // small delay so the sparkles actually render before leaving the page
+      setTimeout(() => {
+        window.location.href = href;
+      }, 150);
+    });
+  });
+
+  // Smooth scroll back to top + global sparkles
+  const backBtn = document.getElementById('back-to-top');
+  if (backBtn) {
+    backBtn.addEventListener('click', function () {
+      spawnSparkles();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+</script>
+
+</body>
+</html>
