@@ -1,5 +1,7 @@
+/* =========================================================
+   FONTS
+   ========================================================= */
 
-/* FONTS FIRST */
 /* Shannon Regular */
 @font-face {
   font-family: 'Shannon';
@@ -18,7 +20,11 @@
   font-style: normal;
 }
 
-/* RESET */
+
+/* =========================================================
+   RESET / GLOBAL
+   ========================================================= */
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -29,21 +35,25 @@ html {
   scroll-behavior: smooth;
 }
 
-
-
 body {
   font-family: 'Shannon', Arial, sans-serif;
   background:
-    radial-gradient(circle at center,
+    radial-gradient(
+      circle at center,
       #ffe3f4 0%,
       #ffb3dd 35%,
       #f83288 65%,
-      #8a9ce0 100%);
+      #8a9ce0 100%
+    );
   background-attachment: fixed;
   color: #2b2140;
 }
 
-/* Sparkle layer: fixed behind content, above background */
+
+/* =========================================================
+   SPARKLE LAYER / STACKING
+   ========================================================= */
+
 #sparkle-layer {
   position: fixed;
   inset: 0;
@@ -51,7 +61,6 @@ body {
   z-index: 1;
 }
 
-/* Ensure main content floats above sparkles */
 .site-header,
 .main-nav,
 .welcome-section,
@@ -61,23 +70,27 @@ footer {
   z-index: 2;
 }
 
-/* SECTION CONTROLS (Expand All buttons) */
+
+/* =========================================================
+   SECTION CONTROLS
+   ========================================================= */
+
 .section-controls {
   display: flex;
   justify-content: center;
   margin: 0 0 18px;
 }
 
-/* Make the Expand button a real button but visually match your .button-link */
 .expand-all-btn {
   border: none;
   cursor: pointer;
 }
 
-/
 
+/* =========================================================
+   HEADER
+   ========================================================= */
 
-/* HEADER */
 .site-header {
   text-align: center;
   padding: 20px 10px 10px;
@@ -98,7 +111,11 @@ footer {
   margin: 0 auto;
 }
 
-/* MAIN NAV: CIRCLES, ICON ABOVE TEXT */
+
+/* =========================================================
+   MAIN NAV
+   ========================================================= */
+
 .main-nav {
   display: flex;
   justify-content: center;
@@ -140,7 +157,11 @@ footer {
   flex-shrink: 0;
 }
 
-/* WELCOME SECTION */
+
+/* =========================================================
+   WELCOME / PAGE BANNER
+   ========================================================= */
+
 .welcome-section {
   max-width: 1000px;
   margin: 0 auto 40px;
@@ -152,83 +173,6 @@ footer {
   display: flex;
   align-items: flex-end;
   justify-content: flex-start;
-  background-image: url('images2/welcome.webp');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  overflow: hidden;
-}
-
-/* WELCOME SECTION COMICS */
-.welcome-section-comics {
-  max-width: 1000px;
-  margin: 0 auto 40px;
-  padding: 20px;
-  min-height: calc(100vh - 260px);
-  border-radius: 24px;
-  box-shadow: 0 8px 20px rgba(57, 89, 172, 0.25);
-  position: relative;
-  display: flex;
-  align-items: flex-end;
-  justify-content: flex-start;
-  background-image: url('images2/comicsbanner.webp');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  overflow: hidden;
-}
-
-/* WELCOME SECTION quiz */
-.welcome-section-quiz {
-  max-width: 1000px;
-  margin: 0 auto 40px;
-  padding: 20px;
-  min-height: calc(100vh - 260px);
-  border-radius: 24px;
-  box-shadow: 0 8px 20px rgba(57, 89, 172, 0.25);
-  position: relative;
-  display: flex;
-  align-items: flex-end;
-  justify-content: flex-start;
-  background-image: url('images2/quiz-banner.webp');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  overflow: hidden;
-}
-
-/* WELCOME SECTION OTHER */
-.welcome-section-other {
-  max-width: 1000px;
-  margin: 0 auto 40px;
-  padding: 20px;
-  min-height: calc(100vh - 260px);
-  border-radius: 24px;
-  box-shadow: 0 8px 20px rgba(57, 89, 172, 0.25);
-  position: relative;
-  display: flex;
-  align-items: flex-end;
-  justify-content: flex-start;
-  background-image: url('images2/inthewoods.webp');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  overflow: hidden;
-}
-
-/* WELCOME SECTION OTHER */
-.welcome-section-shop {
-  max-width: 1000px;
-  margin: 0 auto 40px;
-  padding: 20px;
-  min-height: calc(100vh - 260px);
-  border-radius: 24px;
-  box-shadow: 0 8px 20px rgba(57, 89, 172, 0.25);
-  position: relative;
-  display: flex;
-  align-items: flex-end;
-  justify-content: flex-start;
-  background-image: url('images2/inthewoods.webp');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -239,7 +183,12 @@ footer {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at center, rgba(255, 243, 252, 0.2), rgba(248, 50, 136, 0.35));
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(255, 243, 252, 0.2),
+      rgba(248, 50, 136, 0.35)
+    );
   pointer-events: none;
 }
 
@@ -267,7 +216,11 @@ footer {
   line-height: 1.5;
 }
 
-/* SECTIONS */
+
+/* =========================================================
+   GENERAL SECTIONS
+   ========================================================= */
+
 .section {
   max-width: 1000px;
   margin: 0 auto 60px;
@@ -284,6 +237,11 @@ footer {
   font-size: 2rem;
   color: #f83288;
 }
+
+
+/* =========================================================
+   UNDER CONSTRUCTION
+   ========================================================= */
 
 .under-construction {
   display: flex;
@@ -302,17 +260,16 @@ footer {
   image-rendering: pixelated;
 }
 
-.about-description p {
-  font-size: 0.95rem;
-  color: #3959ac;
-}
-
 .under-construction p {
   font-size: 0.95rem;
   color: #3959ac;
 }
 
-/* REVEAL / LAZY APPEAR */
+
+/* =========================================================
+   REVEAL / LAZY APPEAR
+   ========================================================= */
+
 .reveal-section {
   transition: opacity 0.6s ease, transform 0.6s ease;
 }
@@ -327,15 +284,17 @@ footer {
   transform: translateY(0);
 }
 
-/* COMIC + OTHER GALLERIES */
+/* =========================================================
+   GALLERIES
+   ========================================================= */
+
 .gallery {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 15px;
 }
 
-.comic-item,
-.art-item {
+.gallery-item {
   background: rgba(255, 255, 255, 0.82);
   border-radius: 18px;
   padding: 10px;
@@ -345,20 +304,17 @@ footer {
   gap: 8px;
 }
 
-.comic-main,
-.art-main {
+.gallery-main {
   width: 100%;
   border-radius: 12px;
   cursor: pointer;
   transition: transform 0.15s ease;
 }
 
-.comic-main:hover,
-.art-main:hover {
+.gallery-main:hover {
   transform: scale(1.02);
 }
 
-/* Titles */
 .item-title {
   margin-top: 6px;
   text-align: center;
@@ -367,28 +323,24 @@ footer {
   color: #3959ac;
 }
 
-.comic-extra,
-.art-extra {
+.gallery-extra {
   display: none;
   margin-top: 6px;
   flex-direction: column;
   gap: 8px;
 }
 
-.comic-item.expanded .comic-extra,
-.art-item.expanded .art-extra {
+.gallery-item.expanded .gallery-extra {
   display: flex;
 }
 
-.comic-extra img,
-.art-extra img {
+.gallery-extra img {
   width: 100%;
   border-radius: 10px;
   cursor: pointer;
 }
 
-.comic-description,
-.art-description,
+.gallery-description,
 .about-description {
   border: 2px dashed #f83288;
   border-radius: 14px;
@@ -401,7 +353,15 @@ footer {
   font-family: Arial, sans-serif;
 }
 
-/* SUBHEADINGS */
+.about-description p {
+  font-size: 0.95rem;
+  color: #3959ac;
+}
+
+/* =========================================================
+   SUBHEADINGS
+   ========================================================= */
+
 .subheading {
   margin-top: 15px;
   margin-bottom: 10px;
@@ -409,7 +369,11 @@ footer {
   color: #3959ac;
 }
 
-/* SPLIT SECTION (PRINTING + ABOUT) */
+
+/* =========================================================
+   SPLIT SECTIONS
+   ========================================================= */
+
 .split-section {
   display: flex;
   gap: 20px;
@@ -425,14 +389,18 @@ footer {
 
 .split-text {
   flex: 1;
-  min-width: 0;   /* important so text can shrink on mobile */
+  min-width: 0;
 }
 
 .split-text p {
   margin-bottom: 10px;
 }
 
-/* EVENT BADGES */
+
+/* =========================================================
+   EVENT BADGES
+   ========================================================= */
+
 .event-badges {
   display: flex;
   flex-wrap: wrap;
@@ -449,50 +417,71 @@ footer {
   box-shadow: 0 3px 0 rgba(57, 89, 172, 0.7);
 }
 
-/* ===== Floating CTA Sticker (reusable) ===== */
+
+/* =========================================================
+   FLOATING CTA
+   ========================================================= */
+
 .floating-cta {
   width: 100%;
   display: flex;
   justify-content: center;
-  margin: 22px 0 38px; /* space above + breathing room before footer */
+  margin: 22px 0 38px;
   position: relative;
-  z-index: 10; /* above most content; raise if needed */
+  z-index: 10;
 }
 
 .floating-cta__link {
   display: inline-block;
   border-radius: 18px;
-  overflow: hidden; /* makes rounded corners actually clip the GIF */
-  transform: translateZ(0); /* smoother animation */
+  overflow: hidden;
+  transform: translateZ(0);
   will-change: transform;
   text-decoration: none;
+  animation: floaty 3.6s ease-in-out infinite;
 }
 
 .floating-cta__img {
   display: block;
   max-width: min(320px, 70vw);
   height: auto;
-  border-radius: 18px; /* backup, in case */
+  border-radius: 18px;
 }
 
-/* subtle “floating” idle motion */
 @keyframes floaty {
-  0%   { transform: translateY(0); }
-  50%  { transform: translateY(-6px); }
-  100% { transform: translateY(0); }
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-6px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
 }
 
-.floating-cta__link {
-  animation: floaty 3.6s ease-in-out infinite;
-}
-
-/* bounce on hover/focus */
 @keyframes bouncey {
-  0%   { transform: translateY(0) scale(1); }
-  30%  { transform: translateY(-12px) scale(1.02); }
-  55%  { transform: translateY(0) scale(0.99); }
-  75%  { transform: translateY(-6px) scale(1.01); }
-  100% { transform: translateY(0) scale(1); }
+  0% {
+    transform: translateY(0) scale(1);
+  }
+
+  30% {
+    transform: translateY(-12px) scale(1.02);
+  }
+
+  55% {
+    transform: translateY(0) scale(0.99);
+  }
+
+  75% {
+    transform: translateY(-6px) scale(1.01);
+  }
+
+  100% {
+    transform: translateY(0) scale(1);
+  }
 }
 
 .floating-cta__link:hover,
@@ -501,7 +490,10 @@ footer {
 }
 
 
-/* MARQUEE â€“ self-contained, won't stretch the card */
+/* =========================================================
+   MARQUEE
+   ========================================================= */
+
 .marquee {
   position: relative;
   overflow: hidden;
@@ -532,12 +524,17 @@ footer {
   0% {
     transform: translate(100%, -50%);
   }
+
   100% {
     transform: translate(-100%, -50%);
   }
 }
 
-/* BUTTONS */
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
 .button-link {
   display: inline-block;
   margin-top: 10px;
@@ -561,7 +558,11 @@ footer {
   margin-bottom: 10px;
 }
 
-/* LIGHTBOX */
+
+/* =========================================================
+   LIGHTBOX
+   ========================================================= */
+
 #lightbox {
   display: none;
   position: fixed;
@@ -578,7 +579,11 @@ footer {
   border-radius: 10px;
 }
 
-/* SPARKLES */
+
+/* =========================================================
+   SPARKLES
+   ========================================================= */
+
 .sparkle {
   position: absolute;
   pointer-events: none;
@@ -591,13 +596,18 @@ footer {
     opacity: 1;
     transform: translateY(0);
   }
+
   100% {
     opacity: 0;
     transform: translateY(60px);
   }
 }
 
-/* FOOTER */
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
 footer {
   text-align: center;
   padding: 30px 10px 50px;
@@ -616,6 +626,14 @@ footer a img {
 footer a {
   text-decoration: none;
   border-bottom: none;
+}
+
+.footer-links a img {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.footer-links a img:hover {
+  transform: translateY(-3px) scale(1.05);
 }
 
 #back-to-top {
@@ -640,7 +658,11 @@ footer a {
   color: #2b2140;
 }
 
-/* INLINE LINKS: only links inside paragraphs (so buttons are untouched) */
+
+/* =========================================================
+   INLINE LINKS
+   ========================================================= */
+
 .about-description p a {
   color: #f83288;
   text-decoration: none;
@@ -651,14 +673,50 @@ footer a {
   text-decoration: underline;
 }
 
-/* RE-ASSERT BUTTON LOOK inside About (in case a global link rule is winning) */
 .about-description a.button-link {
   color: #fff !important;
   text-decoration: none !important;
 }
 
 
-/* MOBILE RESPONSIVE */
+/* =========================================================
+   UPDATE TAG
+   ========================================================= */
+
+.update-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: 10px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  border: none;
+  background: linear-gradient(145deg, #ffb3dd, #f83288);
+  color: white;
+  font-weight: bold;
+  box-shadow: 0 4px 0 rgba(57, 89, 172, 0.9);
+  white-space: nowrap;
+  vertical-align: middle;
+  text-decoration: none;
+}
+
+.update-tag:hover {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 rgba(57, 89, 172, 0.9);
+}
+
+.update-tag__gif {
+  height: 20px;
+  width: auto;
+  display: block;
+  image-rendering: pixelated;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
 @media (max-width: 700px) {
   .gallery {
     grid-template-columns: 1fr;
@@ -677,7 +735,6 @@ footer a {
     justify-content: center;
   }
 
-  /* shrink nav circles + gap on mobile */
   .main-nav {
     justify-content: center;
     gap: 10px;
@@ -693,49 +750,4 @@ footer a {
     width: 24px;
     height: 24px;
   }
-}
-
-/* Footer social icon hover: gentle bump */
-.footer-links a img {
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.footer-links a img:hover {
-  transform: translateY(-3px) scale(1.05);
-}
-
-/* ===== Update tag styled like Back-to-Top button ===== */
-.update-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  margin-left: 10px;
-
-  padding: 4px 12px;
-  border-radius: 999px;
-  border: none;
-
-  background: linear-gradient(145deg, #ffb3dd, #f83288);
-  color: white;
-  font-weight: bold;
-
-  box-shadow: 0 4px 0 rgba(57, 89, 172, 0.9);
-
-  white-space: nowrap;
-  vertical-align: middle;
-  text-decoration: none;
-}
-
-/* Match button hover press effect */
-.update-tag:hover {
-  transform: translateY(2px);
-  box-shadow: 0 2px 0 rgba(57, 89, 172, 0.9);
-}
-
-/* GIF sizing */
-.update-tag__gif {
-  height: 20px;
-  width: auto;
-  display: block;
-  image-rendering: pixelated; /* optional */
 }

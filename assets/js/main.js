@@ -8,18 +8,10 @@
       document.getElementById("lightbox").style.display = "none";
     }
 
-    // Expand/retract comic extras
-    document.querySelectorAll('.comic-main').forEach(function (img) {
+    // Expand/retract gallery items
+    document.querySelectorAll('.gallery-main').forEach(function (img) {
       img.addEventListener('click', function () {
-        const parent = img.closest('.comic-item');
-        parent.classList.toggle('expanded');
-      });
-    });
-
-    // Expand/retract other art extras
-    document.querySelectorAll('.art-main').forEach(function (img) {
-      img.addEventListener('click', function () {
-        const parent = img.closest('.art-item');
+        const parent = img.closest('.gallery-item');
         parent.classList.toggle('expanded');
       });
     });
