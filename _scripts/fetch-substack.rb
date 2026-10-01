@@ -10,7 +10,10 @@ POST_LIMIT = 12
 
 puts "Fetching Substack posts..."
 
-feed_content = URI.open(FEED_URL).read
+feed_content = URI.open(
+  FEED_URL,
+  "User-Agent" => "Mozilla/5.0"
+).read
 feed_content.force_encoding("UTF-8")
 
 feed = RSS::Parser.parse(feed_content, false)
