@@ -426,7 +426,7 @@ footer {
   width: 100%;
   display: flex;
   justify-content: center;
-  margin: 22px 0 38px;
+  margin: 8px 0 18px;
   position: relative;
   z-index: 10;
 }
@@ -439,6 +439,50 @@ footer {
   will-change: transform;
   text-decoration: none;
   animation: floaty 3.6s ease-in-out infinite;
+}
+
+.lab-log-link {
+  padding: 16px 28px;
+  font-family: 'Shannon', cursive;
+  font-size: 1.8rem;
+  color: white;
+  text-align: center;
+  white-space: nowrap;
+  text-shadow:
+  2px 3px 5px rgba(248, 50, 136, 0.65),
+  3px 5px 9px rgba(57, 89, 172, 0.4);
+}
+
+.lab-log-link span {
+  display: inline-block;
+  animation: letter-wave 1.8s ease-in-out infinite;
+}
+
+.lab-log-link span:nth-child(2)  { animation-delay: 0.06s; }
+.lab-log-link span:nth-child(3)  { animation-delay: 0.12s; }
+.lab-log-link span:nth-child(4)  { animation-delay: 0.18s; }
+.lab-log-link span:nth-child(5)  { animation-delay: 0.24s; }
+.lab-log-link span:nth-child(6)  { animation-delay: 0.30s; }
+.lab-log-link span:nth-child(7)  { animation-delay: 0.36s; }
+.lab-log-link span:nth-child(8)  { animation-delay: 0.42s; }
+.lab-log-link span:nth-child(9)  { animation-delay: 0.48s; }
+.lab-log-link span:nth-child(10) { animation-delay: 0.54s; }
+.lab-log-link span:nth-child(11) { animation-delay: 0.60s; }
+.lab-log-link span:nth-child(12) { animation-delay: 0.66s; }
+.lab-log-link span:nth-child(13) { animation-delay: 0.72s; }
+.lab-log-link span:nth-child(14) { animation-delay: 0.78s; }
+.lab-log-link span:nth-child(15) { animation-delay: 0.84s; }
+.lab-log-link span:nth-child(16) { animation-delay: 0.90s; }
+.lab-log-link span:nth-child(17) { animation-delay: 0.96s; }
+
+@keyframes letter-wave {
+  0%, 40%, 100% {
+    transform: translateY(0);
+  }
+
+  20% {
+    transform: translateY(-7px);
+  }
 }
 
 .floating-cta__img {

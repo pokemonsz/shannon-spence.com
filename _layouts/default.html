@@ -51,21 +51,22 @@
 
   {{ content }}
 
-  <!-- Floating Lab Access GIF -->
-  <div class="floating-cta">
-    <a class="floating-cta__link" href="https://patreon.com/shannonspence" aria-label="Get lab access on Patreon">
-      <img
-        class="floating-cta__img"
-        src="{{ "/images2/accesspass.gif" | relative_url }}"
-        alt="Lab Access Pass"
-        loading="lazy"
-      >
-    </a>
-  </div>
-
-  <div class="floating-cta">
-    <iframe src="https://shanzine.substack.com/embed?transparent=1" style="border: 0; background: transparent" frameborder="0" scrolling="no"></iframe>
-  </div>
+<!-- Lab Log -->
+<div class="floating-cta">
+  <a class="floating-cta__link lab-log-link"
+   href="{{ "/blog" | relative_url }}"
+   aria-label="Read my Lab Log">
+  <span>R</span><span>E</span><span>A</span><span>D</span>
+  <span class="space">&nbsp;</span>
+  <span>M</span><span>Y</span>
+  <span class="space">&nbsp;</span>
+  <span>L</span><span>A</span><span>B</span>
+  <span class="space">&nbsp;</span>
+  <span>L</span><span>O</span><span>G</span>
+  <span class="space">&nbsp;</span>
+  <span>→</span>
+</a>
+</div>
 
   <!-- LIGHTBOX FOR COMICS / OTHER ART -->
   <div id="lightbox" onclick="closeLightbox()">
