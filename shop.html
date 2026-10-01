@@ -16,30 +16,3 @@ description: Shop comics, zines, and artwork by Shannon Spence.
     </p>
   </div>
 </section>
-
-<script>
-  // Reveal section on scroll
-  (function () {
-    const revealSections = document.querySelectorAll('.reveal-section');
-
-    if (!('IntersectionObserver' in window)) {
-      revealSections.forEach(section => section.classList.remove('hidden-section'));
-      return;
-    }
-
-    try {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.remove('hidden-section');
-            observer.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.15 });
-
-      revealSections.forEach(section => observer.observe(section));
-    } catch (e) {
-      revealSections.forEach(section => section.classList.remove('hidden-section'));
-    }
-  })();
-</script>
