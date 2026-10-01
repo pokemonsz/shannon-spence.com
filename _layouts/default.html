@@ -21,25 +21,33 @@
     <a href="{{ "/" | relative_url }}"><img src="{{ "/images2/name.png" | relative_url }}" alt="Header image" class="header-img"></a>
   </header>
 
-  <!-- MAIN MENU (CIRCLES: ICON ABOVE TEXT) -->
-  <nav class="main-nav">
-    <a href="{{ "/comics" | relative_url }}">
-      <img src="{{ "/images2/comics.png" | relative_url }}" class="nav-icon-img" alt="Comics icon">
-      <span>Comics</span>
-    </a>
-    <a href="{{ "/otherart" | relative_url }}">
-      <img src="{{ "/images2/otherart.png" | relative_url }}" class="nav-icon-img" alt="Other art icon">
-      <span>Art</span>
-    </a>
-    <a href="https://shanzine.bigcartel.com/">
-      <img src="{{ "/images2/bug.png" | relative_url }}" class="nav-icon-img" alt="Shop icon">
-      <span>Shop</span>
-    </a>
-    <a href="{{ "/about" | relative_url }}">
-      <img src="{{ "/images2/about.png" | relative_url }}" class="nav-icon-img" alt="About icon">
-      <span>About</span>
-    </a>
-  </nav>
+	<!-- MAIN MENU (CIRCLES: ICON ABOVE TEXT) -->
+	<nav class="main-nav">
+	  <a href="{{ "/comics" | relative_url }}">
+		<img src="{{ "/images2/comics.png" | relative_url }}" class="nav-icon-img" alt="Comics icon">
+		<span>Comics</span>
+	  </a>
+
+	  <a href="{{ "/otherart" | relative_url }}">
+		<img src="{{ "/images2/otherart.png" | relative_url }}" class="nav-icon-img" alt="Other art icon">
+		<span>Art</span>
+	  </a>
+
+	  <a href="{{ "/blog" | relative_url }}">
+		<img src="{{ "/images2/pencil.png" | relative_url }}" class="nav-icon-img" alt="Blog icon">
+		<span>Blog</span>
+	  </a>
+
+	  <a href="https://shanzine.bigcartel.com/">
+		<img src="{{ "/images2/bug.png" | relative_url }}" class="nav-icon-img" alt="Shop icon">
+		<span>Shop</span>
+	  </a>
+
+	  <a href="{{ "/about" | relative_url }}">
+		<img src="{{ "/images2/about.png" | relative_url }}" class="nav-icon-img" alt="About icon">
+		<span>About</span>
+	  </a>
+	</nav>
 
   {{ content }}
 

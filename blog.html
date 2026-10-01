@@ -1,0 +1,86 @@
+---
+layout: default
+title: Blog
+description: Writing, process notes, and updates from Shannon Spence.
+banner: /images2/blogbanner.png
+---
+
+<!-- PAGE BANNER -->
+<section id="welcome"
+         class="welcome-section"
+         style="background-image: url('{{ page.banner }}');">
+  <div class="welcome-overlay">
+    <h1>Blog</h1>
+    <p>
+      Newsletters, process notes, and other things I've been thinking about.
+    </p>
+  </div>
+</section>
+
+<!-- BLOG POSTS -->
+<section class="section">
+  <h2>Latest Posts</h2>
+
+  <div class="gallery blog-gallery">
+
+    {% for post in site.data.substack %}
+      <article class="gallery-item blog-card">
+
+        {% if post.image %}
+          <a href="{{ post.url }}"
+             target="_blank"
+             rel="noopener">
+            <img src="{{ post.image }}"
+                 alt=""
+                 class="blog-card-image">
+          </a>
+        {% endif %}
+
+        <div class="blog-card-content">
+
+          <p class="blog-card-date">
+            {{ post.date }}
+          </p>
+
+          <h3 class="item-title">
+            <a href="{{ post.url }}"
+               target="_blank"
+               rel="noopener">
+              {{ post.title }}
+            </a>
+          </h3>
+
+          <p class="blog-card-preview">
+            {{ post.preview }}
+          </p>
+
+          <a href="{{ post.url }}"
+             target="_blank"
+             rel="noopener"
+             class="blog-card-link">
+            Read →
+          </a>
+
+        </div>
+
+      </article>
+    {% endfor %}
+
+  </div>
+
+<div class="blog-substack-link">
+
+  <a href="https://shanzine.substack.com/"
+     target="_blank"
+     rel="noopener">
+    View all posts on Substack →
+  </a>
+
+  <a href="https://www.patreon.com/shannonspence/posts"
+     target="_blank"
+     rel="noopener">
+    View all posts on Patreon →
+  </a>
+
+</div>
+</section>

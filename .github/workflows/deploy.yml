@@ -19,6 +19,9 @@ jobs:
           ruby-version: '4.0'
           bundler-cache: true
 
+      - name: Fetch Substack posts
+        run: ruby _scripts/fetch-substack.rb
+
       - name: Build Jekyll site
         run: bundle exec jekyll build
 

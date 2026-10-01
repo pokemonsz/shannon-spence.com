@@ -1,0 +1,48 @@
+---
+layout: default
+title: GALLERY TITLE
+description: GALLERY DESCRIPTION
+banner: /images2/YOUR-BANNER.webp
+---
+
+<!-- PAGE BANNER -->
+<section id="welcome"
+         class="welcome-section"
+         style="background-image: url('{{ page.banner }}');">
+  <div class="welcome-overlay">
+    <h1>GALLERY TITLE</h1>
+    <p>
+      Short introduction to this gallery.
+    </p>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="section reveal-section hidden-section">
+  <h2>GALLERY SECTION TITLE</h2>
+
+  <div class="gallery">
+
+    <!-- GALLERY ITEM -->
+    <div class="gallery-item">
+      <img src="/images2/MAIN-IMAGE.webp"
+           alt="DESCRIPTION OF MAIN IMAGE"
+           class="gallery-main">
+
+      <div class="item-title">ITEM TITLE</div>
+
+      <div class="gallery-extra">
+        <img src="/images2/EXTRA-IMAGE.webp"
+             alt="DESCRIPTION OF EXTRA IMAGE"
+             onclick="openLightbox(this)">
+
+        <div class="gallery-description">
+          <p>
+            Description of this artwork or project goes here.
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
