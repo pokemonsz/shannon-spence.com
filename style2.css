@@ -963,3 +963,57 @@ footer a {
 .home-new-feature__title:hover {
   color: #f83288;
 }
+
+.reveal-section,
+.hidden-section {
+  opacity: 1;
+  transform: none;
+  transition: none;
+}
+
+/* =========================================================
+   COLLAPSIBLE RESUME
+   ========================================================= */
+
+.resume-toggle {
+  display: table;
+  margin: 0 auto 25px;
+  padding: 10px 16px;
+  cursor: pointer;
+  list-style: none;
+  text-align: center;
+
+  /* Match existing buttons */
+  background: linear-gradient(145deg, #f83288, #3959ac);
+  color: white;
+  border-radius: 999px;
+  font-weight: bold;
+  font-size: 0.95rem;
+  font-family: 'Shannon', cursive;
+  box-shadow: 0 4px 0 rgba(57, 89, 172, 0.9);
+}
+
+.resume-toggle:hover {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 rgba(57, 89, 172, 0.9);
+}
+
+.resume-toggle::-webkit-details-marker {
+  display: none;
+}
+
+.resume-toggle::marker {
+  content: "";
+}
+
+.resume-toggle .resume-hide {
+  display: none;
+}
+
+.resume-details[open] .resume-show {
+  display: none;
+}
+
+.resume-details[open] .resume-hide {
+  display: inline;
+}
