@@ -37,18 +37,25 @@ html {
 
 body {
   font-family: 'Shannon', Arial, sans-serif;
-  background:
-    radial-gradient(
-      circle at center,
-      #ffe3f4 0%,
-      #ffb3dd 35%,
-      #f83288 65%,
-      #8a9ce0 100%
-    );
-  background-attachment: fixed;
   color: #2b2140;
-}
 
+  background-color: #3959ac;
+
+  background-image:
+    url('images2/flags.png'),
+    radial-gradient(
+  ellipse at center,
+  #fff3d6 0%,
+  #f1dce5 25%,
+  #a99bcb 55%,
+  #3959ac 100%
+);
+
+  background-repeat: no-repeat, no-repeat;
+  background-position: center top, center center;
+  background-size: 100% auto, cover;
+  background-attachment: fixed, fixed;
+}
 
 /* =========================================================
    SPARKLE LAYER / STACKING
@@ -109,6 +116,10 @@ footer {
   height: auto;
   display: block;
   margin: 0 auto;
+
+  filter:
+  drop-shadow(0 0 8px rgba(57, 89, 172, 0.85))
+  drop-shadow(0 0 22px rgba(57, 89, 172, 0.45));
 }
 
 
@@ -186,8 +197,8 @@ footer {
   background:
     radial-gradient(
       circle at center,
-      rgba(255, 243, 252, 0.2),
-      rgba(248, 50, 136, 0.35)
+      rgba(255, 243, 214, 0.10),
+      rgba(255, 243, 214, 0.30)
     );
   pointer-events: none;
 }
@@ -648,6 +659,7 @@ footer {
 }
 
 
+
 /* =========================================================
    FOOTER
    ========================================================= */
@@ -657,28 +669,71 @@ footer {
   padding: 30px 10px 50px;
 }
 
+/* Icon layout */
+
 .footer-links {
-  margin-bottom: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+
+  width: fit-content;
+  max-width: 100%;
+  margin: 0 auto 25px;
+  padding: 18px 20px 18px;
+
+  background: #ffe3f4;
+  border: none;
+  border-radius: 999px;
+
+  box-shadow: 0 6px 0 rgba(57, 89, 172, 0.7);
+  box-sizing: border-box;
 }
 
-footer a img {
-  width: 50px;
-  margin: 0 10px;
-  border-radius: 10%;
-}
-
-footer a {
+.footer-links a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 90px;
   text-decoration: none;
   border-bottom: none;
 }
 
+/* Icons */
+
 .footer-links a img {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  border-radius: 10%;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.footer-links a img:hover {
+.footer-links a:hover img,
+.footer-links a:focus-visible img {
   transform: translateY(-3px) scale(1.05);
 }
+
+/* Icon labels */
+
+.footer-links a span {
+  font-family: Arial, sans-serif;
+  font-size: 0.85rem;
+  color: #3959ac;
+  margin-top: 8px;
+  opacity: 1;
+  transition: color 0.2s ease;
+}
+
+/* Change label color on hover */
+
+.footer-links a:hover span,
+.footer-links a:focus-visible span {
+  color: #f83288;
+}
+
+/* Back to top */
 
 #back-to-top {
   padding: 8px 16px;
@@ -696,6 +751,8 @@ footer a {
   transform: translateY(2px);
   box-shadow: 0 2px 0 rgba(57, 89, 172, 0.9);
 }
+
+/* Copyright */
 
 .visitor-counter {
   font-size: 0.85rem;

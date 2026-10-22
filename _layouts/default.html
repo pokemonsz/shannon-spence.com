@@ -8,6 +8,7 @@
 
   <link rel="icon" type="image/png" href="{{ "/favicon.png" | relative_url }}">
   <link rel="stylesheet" href="{{ "/style2.css?v=3" | relative_url }}" />
+  <link rel="preload" href="{{ '/images2/flags.png' | relative_url }}" as="image">
 </head>
 <body>
 
@@ -74,37 +75,49 @@
   </div>
 
   <!-- FOOTER -->
-  <footer>
-    <div class="footer-links">
-      <a href="https://instagram.com/shan.zine" target="_blank">
-        <img src="{{ "/images2/ig2.png" | relative_url }}" alt="Instagram">
-      </a>
-      <a href="https://patreon.com/shannonspence">
-        <img src="{{ "/images2/patreon.png" | relative_url }}" alt="Patreon">
-      </a>
-      <a href="https://shanzine.substack.com">
-        <img src="{{ "/images2/substack.png" | relative_url }}" alt="Substack">
-      </a>
-      <a href="https://shanzine.itch.io">
-        <img src="{{ "/images2/itch.png" | relative_url }}" alt="Itch.io">
-      </a>
-      <a href="https://bsky.app/profile/shanzine.bsky.social" target="_blank">
-        <img src="{{ "/images2/blusky.png" | relative_url }}" alt="Bluesky">
-      </a>
-      <a href="mailto:me@shannon-spence.com">
-        <img src="{{ "/images2/mail.png" | relative_url }}" alt="Email">
-      </a>
-      <a href="https://comixaccountability.club">
-        <img src="{{ "/images2/cac2.png" | relative_url }}" alt="Comix Accountability Club">
-      </a>
-    </div>
 
-    <button id="back-to-top" type="button">Back to top &uarr;</button>
+<!-- FOOTER -->
+<footer>
 
-    <div class="visitor-counter">
-      <span>All images © Shannon Spence 2026</span>
-    </div>
-  </footer>
+  <div class="footer-links">
+    <a href="https://instagram.com/shan.zine" target="_blank">
+      <img src="{{ "/images2/ig2.png" | relative_url }}" alt="Instagram">
+      <span>Instagram</span>
+    </a>
+
+    <a href="https://patreon.com/shannonspence">
+      <img src="{{ "/images2/patreon.png" | relative_url }}" alt="Patreon">
+      <span>Patreon</span>
+    </a>
+
+    <a href="https://shanzine.substack.com">
+      <img src="{{ "/images2/substack.png" | relative_url }}" alt="Substack">
+      <span>Substack</span>
+    </a>
+
+    <a href="https://shanzine.itch.io">
+      <img src="{{ "/images2/itch.png" | relative_url }}" alt="Itch.io">
+      <span>Itch.io</span>
+    </a>
+
+    <a href="mailto:me@shannon-spence.com">
+      <img src="{{ "/images2/mail.png" | relative_url }}" alt="Email">
+      <span>Email</span>
+    </a>
+
+    <a href="https://comixaccountability.club">
+      <img src="{{ "/images2/cac2.png" | relative_url }}" alt="Comix Accountability Club">
+      <span>Comix Club</span>
+    </a>
+  </div>
+
+  <button id="back-to-top" type="button">Back to top &uarr;</button>
+
+  <div class="visitor-counter">
+    <span>All images © Shannon Spence 2026</span>
+  </div>
+</footer>
+
 
 <script src="/assets/js/main.js?v=2"></script>
 
