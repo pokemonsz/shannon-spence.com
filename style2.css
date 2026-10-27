@@ -1028,26 +1028,45 @@ footer {
   transition: none;
 }
 
+
+
 /* =========================================================
    COLLAPSIBLE RESUME
    ========================================================= */
 
-.resume-toggle {
-  display: table;
-  margin: 0 auto 25px;
-  padding: 10px 16px;
-  cursor: pointer;
-  list-style: none;
-  text-align: center;
+/* Resume buttons */
 
-  /* Match existing buttons */
+.resume-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 25px;
+  list-style: none;
+  cursor: pointer;
+}
+
+.resume-buttons::-webkit-details-marker {
+  display: none;
+}
+
+.resume-buttons::marker {
+  content: "";
+}
+
+.resume-toggle {
+  display: inline-block;
+  padding: 10px 16px;
   background: linear-gradient(145deg, #f83288, #3959ac);
   color: white;
   border-radius: 999px;
-  font-weight: bold;
-  font-size: 0.95rem;
-  font-family: 'Shannon', cursive;
+  font: bold 0.95rem 'Shannon', cursive;
+  text-align: center;
   box-shadow: 0 4px 0 rgba(57, 89, 172, 0.9);
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
 }
 
 .resume-toggle:hover {
@@ -1055,22 +1074,140 @@ footer {
   box-shadow: 0 2px 0 rgba(57, 89, 172, 0.9);
 }
 
-.resume-toggle::-webkit-details-marker {
+.resume-buttons .resume-toggle {
+  margin: 0;
+}
+
+.resume-download,
+.resume-download:visited,
+.resume-download:hover {
+  color: white;
+  text-decoration: none;
+}
+
+/* Expand / collapse labels */
+
+.resume-hide {
   display: none;
 }
 
-.resume-toggle::marker {
+.resume-details[open] > .resume-buttons .resume-show,
+.resume-archive[open] > .resume-toggle .resume-show {
+  display: none;
+}
+
+.resume-details[open] > .resume-buttons .resume-hide,
+.resume-archive[open] > .resume-toggle .resume-hide {
+  display: inline;
+}
+
+/* Resume content */
+
+.resume-content {
+  padding: 10px 12px 20px;
+  font: 0.95rem Arial, sans-serif;
+  text-align: left;
+}
+
+/* Section headings */
+
+.resume-heading {
+  display: table;
+  margin: 26px 0 14px;
+  padding: 8px 14px;
+  background: #f83288;
+  color: white;
+  border-radius: 999px;
+  font: bold 0.95rem 'Shannon', cursive;
+  box-shadow: 0 3px 0 rgba(57, 89, 172, 0.7);
+}
+
+/* Entries */
+
+.resume-entry {
+  display: grid;
+  grid-template-columns: 105px minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+
+.resume-year {
+  color: #3959ac;
+  font-size: 0.85rem;
+  font-weight: bold;
+}
+
+/* Links */
+
+.resume-content a,
+.resume-content a:visited {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: #f83288;
+  text-underline-offset: 3px;
+}
+
+.resume-content a:hover,
+.resume-content a:focus-visible {
+  color: #f83288;
+}
+
+/* Full festival archive */
+
+.resume-archive {
+  margin-top: 22px;
+}
+
+.resume-archive > .resume-toggle {
+  display: table;
+  margin: 0 auto 25px;
+  padding: 8px 14px;
+  background: #f83288;
+  box-shadow: 0 3px 0 rgba(57, 89, 172, 0.7);
+  list-style: none;
+}
+
+.resume-archive > .resume-toggle::marker {
   content: "";
 }
 
-.resume-toggle .resume-hide {
+.resume-archive > .resume-toggle::-webkit-details-marker {
   display: none;
 }
 
-.resume-details[open] .resume-show {
-  display: none;
+.resume-archive-content {
+  padding: 12px 0 10px;
 }
 
-.resume-details[open] .resume-hide {
-  display: inline;
+.resume-archive-content h4 {
+  margin: 20px 0 10px;
+  color: #3959ac;
+  font-size: 1rem;
+}
+
+.resume-archive-content p {
+  margin-bottom: 9px;
+  line-height: 1.5;
+}
+
+/* Bottom collapse button */
+
+.resume-bottom-toggle {
+  display: table;
+  margin: 25px auto 0;
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+  .resume-entry {
+    grid-template-columns: 80px minmax(0, 1fr);
+    gap: 10px;
+  }
+
+  .resume-content {
+    padding: 8px 2px 16px;
+  }
 }
