@@ -1211,3 +1211,47 @@ footer {
     padding: 8px 2px 16px;
   }
 }
+
+/* =========================================================
+   GUESTBOOK
+   ========================================================= */
+
+.guestbook-intro {
+  max-width: 650px;
+  margin: 0 auto 24px;
+  text-align: center;
+  color: #3959ac;
+  font-size: 1.1rem;
+  line-height: 1.5;
+}
+
+.guestbook-frame {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 12px;
+  background: #fffbfe;
+  border: 2px dashed #f83288;
+  border-radius: 18px;
+}
+
+.guestbook-frame iframe {
+  display: block;
+  width: 100%;
+  border: 0;
+  border-radius: 10px;
+}
+
+/* Guestbook button in footer */
+.footer-guestbook {
+  display: flex;
+  justify-content: center;
+  margin-top: 18px;
+  margin-bottom: 12px;
+}
+
+.footer-guestbook-button {
+  font-family: Arial, sans-serif !important;
+  font-size: 14px;
+  text-decoration: none;
+  cursor: pointer;
+}

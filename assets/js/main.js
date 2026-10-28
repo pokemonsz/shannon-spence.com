@@ -80,7 +80,7 @@
     });
 
     // Sparkles on MAIN NAV clicks
-    document.querySelectorAll('.main-nav a').forEach(link => {
+    document.querySelectorAll('.main-nav a, .footer-guestbook-button').forEach(link => {
       link.addEventListener('click', function (e) {
         if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button === 1) return;
 
